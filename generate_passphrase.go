@@ -2,15 +2,16 @@ package go_generate_passphrase
 
 import (
 	"crypto/rand"
-	"encoding/hex"
 	"errors"
 	"io/ioutil"
 	"math/big"
+	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 )
 
-type generateOptions struct {
+type Options struct {
 	Length    int
 	Separator string
 	Numbers   bool
@@ -44,11 +45,22 @@ func getRandomNumber(max int) int {
 }
 
 func getRandomWord() (string, error) {
-	words, err := ioutil.ReadFile("words.txt")
+	vendorPath, err := filepath.Abs("./vendor/github.com/aldy505/go-generate-passphrase/words.txt")
 	if err != nil {
 		return "", err
 	}
-	wordsString := hex.EncodeToString(words)
+	gopathPath := filepath.Join(os.Getenv("GOPATH"), "/pkg/mod/github.com/aldy505/go-generate-passphrase@v0.0.1")
+	words, err := ioutil.ReadFile(gopathPath)
+	if err != nil {
+		words, err = ioutil.ReadFile(vendorPath)
+		if err != nil {
+			words, err = ioutil.ReadFile("./words.txt")
+			if err != nil {
+				return "", err
+			}
+		}
+	}
+	wordsString := string(words)
 	wordsArray := strings.Split(wordsString, "\n")
 	randomInt, err := rand.Int(rand.Reader, big.NewInt(int64(len(wordsArray))))
 	if err != nil {
@@ -71,7 +83,7 @@ func getRandomPattern(length int, numbers bool) string {
 	return pattern.String()
 }
 
-func Generate(options *generateOptions) (string, error) {
+func Generate(options *Options) (string, error) {
 	var length int
 	if options.Length <= 0 {
 		length = 4
@@ -128,7 +140,7 @@ func Generate(options *generateOptions) (string, error) {
 	return passphrase, nil
 }
 
-func GenerateMultiple(amount int, options *generateOptions) ([]string, error) {
+func GenerateMultiple(amount int, options *Options) ([]string, error) {
 	var passphrase []string
 	for i := 0; i < amount; i++ {
 		generated, err := Generate(options)
