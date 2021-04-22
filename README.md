@@ -1,6 +1,6 @@
 # Generate Passphrase for Go
 
-[![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/aldy505/go-generate-passphrase?include_prereleases)](https://github.com/aldy505/go-generate-passphrase/releases) [![GitHub branch checks state](https://img.shields.io/github/checks-status/aldy505/go-generate-passphrase/master)](https://github.com/aldy505/go-generate-passphrase/actions) [![codecov](https://codecov.io/gh/aldy505/go-generate-passphrase/branch/master/graph/badge.svg?token=DV7VhMgdAp)](https://codecov.io/gh/aldy505/go-generate-passphrase) [![GitHub](https://img.shields.io/github/license/aldy505/go-generate-passphrase)](https://github.com/aldy505/go-generate-passphrase/blob/master/LICENSE)
+[![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/aldy505/go-generate-passphrase?include_prereleases)](https://github.com/aldy505/go-generate-passphrase/releases) [![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/aldy505/go-generate-passphrase/Build%20test/master)](https://github.com/aldy505/go-generate-passphrase/actions) [![codecov](https://codecov.io/gh/aldy505/go-generate-passphrase/branch/master/graph/badge.svg?token=DV7VhMgdAp)](https://codecov.io/gh/aldy505/go-generate-passphrase) [![GitHub](https://img.shields.io/github/license/aldy505/go-generate-passphrase)](https://github.com/aldy505/go-generate-passphrase/blob/master/LICENSE)
 
 Ported from [Generate Passphrase for Nodejs](https://github.com/aldy505/generate-passphrase).
 
