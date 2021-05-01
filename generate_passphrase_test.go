@@ -7,8 +7,8 @@ import (
 )
 
 func TestGenerate(t *testing.T) {
-	t.Run("Should generate passphrase without options", func(t *testing.T) {
-		got, err := Generate(&Options{})
+	t.Run("should generate passphrase without options", func(t *testing.T) {
+		got, err := Generate(Options{})
 		if err != nil {
 			t.Errorf(err.Error())
 		}
@@ -18,8 +18,8 @@ func TestGenerate(t *testing.T) {
 			t.Errorf("Strings does not equal to 4 section: %v", got)
 		}
 	})
-	t.Run("Should generate a passphrase with size length", func(t *testing.T) {
-		got, err := Generate(&Options{
+	t.Run("should generate a passphrase with size length", func(t *testing.T) {
+		got, err := Generate(Options{
 			Length: 10,
 		})
 		if err != nil {
@@ -30,8 +30,8 @@ func TestGenerate(t *testing.T) {
 			t.Errorf("Strings does not equal to 10 section: %v", got)
 		}
 	})
-	t.Run("Should generate all word pattern with numbers: false", func(t *testing.T) {
-		got, err := Generate(&Options{
+	t.Run("should generate all word pattern with numbers: false", func(t *testing.T) {
+		got, err := Generate(Options{
 			Numbers: false,
 		})
 		if err != nil {
@@ -42,16 +42,16 @@ func TestGenerate(t *testing.T) {
 			t.Errorf("Strings has numbers: %v", got)
 		}
 	})
-	t.Run("Should output error for unknown pattern", func(t *testing.T) {
-		_, err := Generate(&Options{
+	t.Run("should output error for unknown pattern", func(t *testing.T) {
+		_, err := Generate(Options{
 			Pattern: "AAA",
 		})
 		if err == nil {
 			t.Error("Error was not thrown")
 		}
 	})
-	t.Run("Should generate all word pattern with pattern: WWWWW", func(t *testing.T) {
-		got, err := Generate(&Options{
+	t.Run("should generate all word pattern with pattern: WWWWW", func(t *testing.T) {
+		got, err := Generate(Options{
 			Pattern: "WWWWW",
 		})
 		if err != nil {
@@ -68,8 +68,8 @@ func TestGenerate(t *testing.T) {
 			}
 		}
 	})
-	t.Run("Should generate all number pattern with pattern: NNNNN", func(t *testing.T) {
-		got, err := Generate(&Options{
+	t.Run("should generate all number pattern with pattern: NNNNN", func(t *testing.T) {
+		got, err := Generate(Options{
 			Pattern: "NNNNN",
 		})
 		if err != nil {
@@ -86,8 +86,8 @@ func TestGenerate(t *testing.T) {
 			}
 		}
 	})
-	t.Run("Should generate all uppercase word pattern", func(t *testing.T) {
-		got, err := Generate(&Options{
+	t.Run("should generate all uppercase word pattern", func(t *testing.T) {
+		got, err := Generate(Options{
 			Numbers:   false,
 			Uppercase: true,
 		})
@@ -102,8 +102,8 @@ func TestGenerate(t *testing.T) {
 			}
 		}
 	})
-	t.Run("Should generate all titlecase word pattern", func(t *testing.T) {
-		got, err := Generate(&Options{
+	t.Run("should generate all titlecase word pattern", func(t *testing.T) {
+		got, err := Generate(Options{
 			Numbers:   false,
 			Titlecase: true,
 		})
@@ -124,7 +124,7 @@ func TestGenerate(t *testing.T) {
 		}
 	})
 	t.Run("should have different separator", func(t *testing.T) {
-		got, err := Generate(&Options{
+		got, err := Generate(Options{
 			Separator: "_",
 		})
 		if err != nil {
@@ -139,7 +139,7 @@ func TestGenerate(t *testing.T) {
 		}
 	})
 	t.Run("should use pattern if length is also provided", func(t *testing.T) {
-		got, err := Generate(&Options{
+		got, err := Generate(Options{
 			Length:  10,
 			Pattern: "WWNWWW",
 		})
@@ -152,7 +152,7 @@ func TestGenerate(t *testing.T) {
 		}
 	})
 	t.Run("should still be uppercase if titlecase is also true", func(t *testing.T) {
-		got, err := Generate(&Options{
+		got, err := Generate(Options{
 			Uppercase: true,
 			Titlecase: true,
 			Numbers:   false,
@@ -169,7 +169,7 @@ func TestGenerate(t *testing.T) {
 		}
 	})
 	t.Run("should have all uppercase words and numbers", func(t *testing.T) {
-		got, err := Generate(&Options{
+		got, err := Generate(Options{
 			Uppercase: true,
 			Titlecase: true,
 			Numbers:   true,
@@ -190,7 +190,7 @@ func TestGenerate(t *testing.T) {
 
 func TestGenerateMultiple(t *testing.T) {
 	t.Run("should generate 5 multiple passphrase without options", func(t *testing.T) {
-		got, err := GenerateMultiple(5, &Options{})
+		got, err := GenerateMultiple(5, Options{})
 		if err != nil {
 			t.Errorf(err.Error())
 		}
@@ -199,12 +199,56 @@ func TestGenerateMultiple(t *testing.T) {
 		}
 	})
 	t.Run("should generate 25 multiple passphrase without options", func(t *testing.T) {
-		got, err := GenerateMultiple(25, &Options{})
+		got, err := GenerateMultiple(25, Options{})
 		if err != nil {
 			t.Errorf(err.Error())
 		}
 		if len(got) != 25 {
 			t.Error("Slice length is not 25")
+		}
+	})
+	t.Run("should generate 10 multiple passphrase with size length", func(t *testing.T) {
+		got, err := GenerateMultiple(10, Options{
+			Length: 10,
+		})
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+		if len(got) != 10 {
+			t.Error("Slice length is not 10")
+		} else {
+			for i := 0; i < len(got); i++ {
+				split := strings.Split(got[i], "-")
+				if len(split) != 10 {
+					t.Errorf("Strings does not equal to 10 section: %v", got[i])
+				}
+			}
+		}
+	})
+	t.Run("should generate 10 multiple passphrase with all word pattern with numbers: false", func(t *testing.T) {
+		got, err := GenerateMultiple(10, Options{
+			Numbers: false,
+		})
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+		if len(got) != 10 {
+			t.Error("Slice length is not 10")
+		} else {
+			for i := 0; i < len(got); i++ {
+				validRegex := regexp.MustCompile(`[a-zA-Z]`)
+				if !(validRegex.MatchString(got[i])) {
+					t.Errorf("Strings has numbers: %v", got[i])
+				}
+			}
+		}
+	})
+	t.Run("should output error for unknown pattern on multiple passphrase", func(t *testing.T) {
+		_, err := GenerateMultiple(10, Options{
+			Pattern: "AAA",
+		})
+		if err == nil {
+			t.Error("Error was not thrown")
 		}
 	})
 }

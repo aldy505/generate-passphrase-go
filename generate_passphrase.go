@@ -83,7 +83,7 @@ func getRandomPattern(length int, numbers bool) string {
 	return pattern.String()
 }
 
-func Generate(options *Options) (string, error) {
+func Generate(options Options) (string, error) {
 	var length int
 	if options.Length <= 0 {
 		length = 4
@@ -115,7 +115,7 @@ func Generate(options *Options) (string, error) {
 		} else if eachPattern[i] == "W" {
 			word, err := getRandomWord()
 			if err != nil {
-				return "", errors.New("Failed to get a word.")
+				return "", errors.New("failed to get a word")
 			}
 			if options.Uppercase {
 				passphraseArray = append(passphraseArray, strings.ToUpper(word))
@@ -125,7 +125,7 @@ func Generate(options *Options) (string, error) {
 				passphraseArray = append(passphraseArray, word)
 			}
 		} else {
-			return "", errors.New("Unknown pattern found. Use N or W instead.")
+			return "", errors.New("unknown pattern found. Use N or W instead")
 		}
 	}
 
@@ -140,7 +140,7 @@ func Generate(options *Options) (string, error) {
 	return passphrase, nil
 }
 
-func GenerateMultiple(amount int, options *Options) ([]string, error) {
+func GenerateMultiple(amount int, options Options) ([]string, error) {
 	var passphrase []string
 	for i := 0; i < amount; i++ {
 		generated, err := Generate(options)

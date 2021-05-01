@@ -22,14 +22,14 @@ import (
 
 func main() {
   // Generate a single passphrase
-  pass, err := passphrase.Generate(&passphrase.Options{})
+  pass, err := passphrase.Generate(passphrase.Options{})
   if err != nil {
     fmt.Println(err.Error())
   }
   fmt.Println(pass)
 
   // To use with available options. See available options below.
-  pass, err := passphrase.Generate(&passphrase.Options{
+  pass, err := passphrase.Generate(passphrase.Options{
     Length:  6,
     Numbers: true,
   })
