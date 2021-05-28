@@ -1,4 +1,4 @@
-package go_generate_passphrase
+package gogeneratepassphrase
 
 import (
 	"crypto/rand"
@@ -11,6 +11,7 @@ import (
 	"strings"
 )
 
+// Options for passphrase instance
 type Options struct {
 	Length    int
 	Separator string
@@ -29,7 +30,7 @@ func getRandomValue() int {
 		randomBytes = make([]byte, 256)
 		rand.Read(randomBytes)
 	}
-	randomIndex += 1
+	randomIndex++
 	return int(randomBytes[randomIndex])
 }
 
@@ -83,6 +84,7 @@ func getRandomPattern(length int, numbers bool) string {
 	return pattern.String()
 }
 
+// Generate generates 1 random passphrase based on options provided
 func Generate(options Options) (string, error) {
 	var length int
 	if options.Length <= 0 {
@@ -140,6 +142,7 @@ func Generate(options Options) (string, error) {
 	return passphrase, nil
 }
 
+// Generate generates multiple random passphrase based on options provided
 func GenerateMultiple(amount int, options Options) ([]string, error) {
 	var passphrase []string
 	for i := 0; i < amount; i++ {
