@@ -254,3 +254,15 @@ func TestGenerateMultiple(t *testing.T) {
 		}
 	})
 }
+
+func BenchmarkGenerate(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		passphrase.Generate(passphrase.Options{})
+	}
+}
+
+func BenchmarkMultiple(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		passphrase.GenerateMultiple(10, passphrase.Options{})
+	}
+}

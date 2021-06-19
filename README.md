@@ -65,6 +65,21 @@ A few things to note:
 * Uppercase is more prioritized than titlecase. So if you have both options set to true, it will be words full of uppercase.
 * Pattern option is more prioritized than length, because you've set the passphrase pattern, hence the module is using the length from your pattern.
 
+## Benchmark
+
+```sh
+goos: linux
+goarch: amd64
+pkg: github.com/aldy505/generate-passphrase-go
+cpu: Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz
+BenchmarkGenerate
+BenchmarkGenerate-8       156243            454775 ns/op
+BenchmarkMultiple
+BenchmarkMultiple-8        15639           4605444 ns/op
+PASS
+ok      github.com/aldy505/generate-passphrase-go       194.447s
+```
+
 ## Contributing
 
 Yes!
