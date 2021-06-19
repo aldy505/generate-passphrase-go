@@ -1,12 +1,9 @@
-package gogeneratepassphrase
+package generatepassphrase
 
 import (
 	"crypto/rand"
 	"errors"
-	"io/ioutil"
 	"math/big"
-	"os"
-	"path/filepath"
 	"strconv"
 	"strings"
 )
@@ -46,23 +43,177 @@ func getRandomNumber(max int) int {
 }
 
 func getRandomWord() (string, error) {
-	vendorPath, err := filepath.Abs("./vendor/github.com/aldy505/go-generate-passphrase/words.txt")
-	if err != nil {
-		return "", err
+	var wordsArray [5000]string
+	useWords := getRandomNumber(54)
+
+	switch useWords {
+	case 0:
+		wordsArray = words0
+		break
+	case 1:
+		wordsArray = words1
+		break
+	case 2:
+		wordsArray = words2
+		break
+	case 3:
+		wordsArray = words3
+		break
+	case 4:
+		wordsArray = words4
+		break
+	case 5:
+		wordsArray = words5
+		break
+	case 6:
+		wordsArray = words6
+		break
+	case 7:
+		wordsArray = words7
+		break
+	case 8:
+		wordsArray = words8
+		break
+	case 9:
+		wordsArray = words9
+		break
+	case 10:
+		wordsArray = words10
+		break
+	case 11:
+		wordsArray = words11
+		break
+	case 12:
+		wordsArray = words12
+		break
+	case 13:
+		wordsArray = words13
+		break
+	case 14:
+		wordsArray = words14
+		break
+	case 15:
+		wordsArray = words15
+		break
+	case 16:
+		wordsArray = words16
+		break
+	case 17:
+		wordsArray = words17
+		break
+	case 18:
+		wordsArray = words18
+		break
+	case 19:
+		wordsArray = words19
+		break
+	case 20:
+		wordsArray = words20
+		break
+	case 21:
+		wordsArray = words21
+		break
+	case 22:
+		wordsArray = words22
+		break
+	case 23:
+		wordsArray = words23
+		break
+	case 24:
+		wordsArray = words24
+		break
+	case 25:
+		wordsArray = words25
+		break
+	case 26:
+		wordsArray = words26
+		break
+	case 27:
+		wordsArray = words27
+		break
+	case 28:
+		wordsArray = words28
+		break
+	case 29:
+		wordsArray = words29
+		break
+	case 30:
+		wordsArray = words30
+		break
+	case 31:
+		wordsArray = words31
+		break
+	case 32:
+		wordsArray = words32
+		break
+	case 33:
+		wordsArray = words33
+		break
+	case 34:
+		wordsArray = words34
+		break
+	case 35:
+		wordsArray = words35
+		break
+	case 36:
+		wordsArray = words36
+		break
+	case 37:
+		wordsArray = words37
+		break
+	case 38:
+		wordsArray = words38
+		break
+	case 39:
+		wordsArray = words39
+		break
+	case 40:
+		wordsArray = words40
+		break
+	case 41:
+		wordsArray = words41
+		break
+	case 42:
+		wordsArray = words42
+		break
+	case 43:
+		wordsArray = words43
+		break
+	case 44:
+		wordsArray = words44
+		break
+	case 45:
+		wordsArray = words45
+		break
+	case 46:
+		wordsArray = words46
+		break
+	case 47:
+		wordsArray = words47
+		break
+	case 48:
+		wordsArray = words48
+		break
+	case 49:
+		wordsArray = words49
+		break
+	case 50:
+		wordsArray = words50
+		break
+	case 51:
+		wordsArray = words51
+		break
+	case 52:
+		wordsArray = words52
+		break
+	case 53:
+		wordsArray = words53
+		break
+	case 54:
+		wordsArray = words54
+		break
 	}
-	gopathPath := filepath.Join(os.Getenv("GOPATH"), "/pkg/mod/github.com/aldy505/go-generate-passphrase@v0.0.1")
-	words, err := ioutil.ReadFile(gopathPath)
-	if err != nil {
-		words, err = ioutil.ReadFile(vendorPath)
-		if err != nil {
-			words, err = ioutil.ReadFile("./words.txt")
-			if err != nil {
-				return "", err
-			}
-		}
-	}
-	wordsString := string(words)
-	wordsArray := strings.Split(wordsString, "\n")
+
 	randomInt, err := rand.Int(rand.Reader, big.NewInt(int64(len(wordsArray))))
 	if err != nil {
 		return "", err

@@ -1,11 +1,11 @@
-package gogeneratepassphrase_test
+package generatepassphrase_test
 
 import (
 	"regexp"
 	"strings"
 	"testing"
 
-	passphrase "github.com/aldy505/go-generate-passphrase"
+	passphrase "github.com/aldy505/generate-passphrase-go"
 )
 
 func TestGenerate(t *testing.T) {

@@ -1,6 +1,6 @@
 # Generate Passphrase for Go
 
-[![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/aldy505/go-generate-passphrase?include_prereleases)](https://github.com/aldy505/go-generate-passphrase/releases) [![Go Reference](https://pkg.go.dev/badge/github.com/aldy505/go-generate-passphrase.svg)](https://pkg.go.dev/github.com/aldy505/go-generate-passphrase) [![GitHub](https://img.shields.io/github/license/aldy505/go-generate-passphrase)](https://github.com/aldy505/go-generate-passphrase/blob/master/LICENSE) [![codecov](https://codecov.io/gh/aldy505/go-generate-passphrase/branch/master/graph/badge.svg?token=DV7VhMgdAp)](https://codecov.io/gh/aldy505/go-generate-passphrase) [![CodeFactor](https://www.codefactor.io/repository/github/aldy505/go-generate-passphrase/badge)](https://www.codefactor.io/repository/github/aldy505/go-generate-passphrase) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/6bb40d1557574b96b8bd478b179c9803)](https://www.codacy.com/gh/aldy505/go-generate-passphrase/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=aldy505/go-generate-passphrase&amp;utm_campaign=Badge_Grade) [![Build test](https://github.com/aldy505/go-generate-passphrase/actions/workflows/build.yml/badge.svg)](https://github.com/aldy505/go-generate-passphrase/actions/workflows/build.yml) [![Test and coverage](https://github.com/aldy505/go-generate-passphrase/actions/workflows/codecov.yml/badge.svg)](https://github.com/aldy505/go-generate-passphrase/actions/workflows/codecov.yml)
+[![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/aldy505/generate-passphrase-go?include_prereleases)](https://github.com/aldy505/generate-passphrase-go/releases) [![Go Reference](https://pkg.go.dev/badge/github.com/aldy505/generate-passphrase-go.svg)](https://pkg.go.dev/github.com/aldy505/generate-passphrase-go) [![GitHub](https://img.shields.io/github/license/aldy505/generate-passphrase-go)](https://github.com/aldy505/generate-passphrase-go/blob/master/LICENSE) [![codecov](https://codecov.io/gh/aldy505/generate-passphrase-go/branch/master/graph/badge.svg?token=DV7VhMgdAp)](https://codecov.io/gh/aldy505/generate-passphrase-go) [![CodeFactor](https://www.codefactor.io/repository/github/aldy505/generate-passphrase-go/badge)](https://www.codefactor.io/repository/github/aldy505/generate-passphrase-go) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/6bb40d1557574b96b8bd478b179c9803)](https://www.codacy.com/gh/aldy505/generate-passphrase-go/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=aldy505/generate-passphrase-go&amp;utm_campaign=Badge_Grade) [![Build test](https://github.com/aldy505/generate-passphrase-go/actions/workflows/build.yml/badge.svg)](https://github.com/aldy505/generate-passphrase-go/actions/workflows/build.yml) [![Test and coverage](https://github.com/aldy505/generate-passphrase-go/actions/workflows/codecov.yml/badge.svg)](https://github.com/aldy505/generate-passphrase-go/actions/workflows/codecov.yml)
 
 Ported from [Generate Passphrase for Nodejs](https://github.com/aldy505/generate-passphrase).
 
@@ -9,7 +9,7 @@ Ported from [Generate Passphrase for Nodejs](https://github.com/aldy505/generate
 Make sure you have Go v1.14 or higher.
 
 ```bash
-go get github.com/aldy505/go-generate-passphrase
+go get github.com/aldy505/generate-passphrase-go
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ go get github.com/aldy505/go-generate-passphrase
 ```go
 import (
   "fmt"
-  passphrase "github.com/aldy505/go-generate-passphrase"
+  passphrase "github.com/aldy505/generate-passphrase-go"
 )
 
 func main() {
@@ -39,7 +39,7 @@ func main() {
   fmt.Println(pass)
 
   // Generate multiple passphrase
-  multiPass, err := passphrase.GenerateMultiple(5, &passphrase.Options{})
+  multiPass, err := passphrase.GenerateMultiple(5, passphrase.Options{})
   if err != nil {
     fmt.Println(err.Error())
   }
